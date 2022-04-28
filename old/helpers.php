@@ -1,5 +1,27 @@
 <?php
 
+require_once __DIR__.'/config.php';
+
+/*
+$encrypted = openssl_encrypt($plaintext, $cipher, $key, 0, $iv);
+
+if(false === $encrypted)
+{
+    echo openssl_error_string();
+    die;
+}
+
+$decrypted = openssl_decrypt($encrypted, $cipher, $key, 0, $iv);
+
+ $result = $decrypted === $plaintext;
+
+print $result ? 'Everything is fine' : 'Well, we did not decrypt good, did we?';
+
+echo $decrypted;
+die();
+*/
+
+session_start();
 date_default_timezone_set('Europe/Istanbul');
 
 try {
@@ -9,6 +31,17 @@ try {
 }
 
 
+/*
+print_r($_SESSION);
+session_destroy();
+echo "<pre>";
+$sorgu = $db->prepare("SELECT * FROM users");
+$sorgu->execute();
+if ($sorgu->rowCount()) {
+    $sorgu = $sorgu->fetchAll(PDO::FETCH_OBJ);
+    print_r($sorgu);
+}
+*/
 
 function turkcetarih_formati($format, $datetime = 'now')
 {
@@ -135,3 +168,12 @@ function ay_bul($id)
     );
     return $ay_dizi[$id];
 }
+//echo $zaman3 = strtotime('+180 hours') - (time()); //1 saniye, 1 dakika, 1 saat, 1 gün, 1 hafta, 1 ay, 1 yıl ekle
+
+//die();
+//echo sure_fark_sonuc("648000","637200","637200");
+//echo "<br>ad". $baslangicSaati = strtotime("24:00:00");
+
+
+
+//die();
