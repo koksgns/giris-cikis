@@ -1,11 +1,18 @@
 <?php
 
 date_default_timezone_set('Europe/Istanbul');
+require_once 'config.php';
 
 try {
-    $db = new PDO('mysql:host=localhost;dbname=giris_cikis', 'root', '');
+    $db = new PDO('mysql:host='.$db_host.';dbname='.$db_name , $db_user, $db_password);
 } catch (PDOException $e) {
     die("Database bağlantı hatası");
+}
+
+$UserID = isset($_COOKIE["UserID"]) ? openssl_decrypt($_COOKIE["UserID"], $cipher, $key, 0, $iv) : false;
+$UserName = isset($_COOKIE["UserName"]) ? openssl_decrypt($_COOKIE["UserName"], $cipher, $key, 0, $iv) : false;
+if(!$UserID && !$UserName){
+   $UserID = false;
 }
 
 
